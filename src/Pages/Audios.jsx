@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import "../Styles/ImagesPage.css";
+import "../Styles/AudiosPage.css";
 import { makeGetAllRequest as getAllAudios } from '../utilities/APIrequests';
-import { audiosURL, mediaURL } from '../utilities/config';
+import { audiosURL, mediaURL, testMediaURL } from '../utilities/config';
 
 const Audios = () => {
     const [audios, setAudios] = useState([]);
@@ -25,17 +25,22 @@ const Audios = () => {
   return (
 
     <div>
-        <div>Audios</div>
+        <div className="page-title">Audios</div>
 
-        <div>
+        <div className = "audios-container">
             {audios && audios.map((audio) => (
                 
-                <div key = {audio.Id}>
+                <div key = {audio.Id} className = "audio-wrapper">
+
+                    
                     <audio id={audio.Id} controls>
                         <source src={audio.Audio ? `${audiosURL}${audio.Audio.replace('MP3/', '')}`: ""} type="audio/mpeg"/>
                         <button onClick = {() => playAudio(audio.Id)} type = "button">Play</button>
                         <button onClick = {() => pauseAudio(audio.Id)} type = "button">Pause</button>
                     </audio>
+
+                    <h1 className="audio-text">{`Title: ${audio.Title}`}</h1>
+                        <h1 className="audio-text">{`Date created: ${audio.CreateDate}`}</h1>
                 </div>
         ))}
 
