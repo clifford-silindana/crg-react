@@ -12,13 +12,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route
-              path="images"
-              element={<Images />}
-            />
-            <Route path="audios" element={<Audios />} />
-          </Route>
+          <Route path="/" element={<Images />} />
+      
       </Routes>
     </BrowserRouter>
     </div>
