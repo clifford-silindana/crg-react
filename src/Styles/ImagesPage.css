@@ -27,6 +27,52 @@
 .image-text {
   font-size: 16px;
   color: white;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 16px;
+  color: white;
+  font-weight: 800;
+  margin: 5px;
+}
+
+.episode {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+  margin: 5px;
+}
+
+.date {
+  color: white;
+  font-weight: 300;
+  margin: 10px;
+}
+
+.category {
+  font-size: 16px;
+  color: white;
+  background: lightblue;
+  border-radius: 5px;
+  width: 50%;
+  margin: 15px auto;
+  padding: 10px;
+}
+
+.youtube-link {
+  text-decoration: none;
+  color: blue;
+  cursor: pointer;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.youtube-link:hover {
+  color: white;
+  background: blue;
 }
 
 .page-title {
@@ -35,11 +81,20 @@
   color: white;
 }
 
+.audi-wrapper {
+  margin: 20px auto;
+}
+
+.audio-size {
+  color: white;
+}
+
 .crud-buttons {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
   margin-top: 20px auto;
+  display: none;
 }
 
 .crud-buttons .crud-button:nth-child(2) {
