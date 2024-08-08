@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../Styles/Home.css";
-import { makeGetAllRequest as getAllImages, makePutRequest as updateRequest } from '../utilities/APIrequests';
+import { makeGetAllRequest as getAllData, makePutRequest as updateRequest } from '../utilities/APIrequests';
 import { imagesURL, audiosURL, mediaURL, testMediaURL } from '../utilities/config';
 import editicon from "../Icons/edit.png";
 import deleteicon from "../Icons/delete.png";
 
-const Images = () => {
+const Home = () => {
     const [images, setImages] = useState([]);
     const [editingImageId, setEditingImageId] = useState(null);
     const [newTitle, setNewTitle] = useState('');
@@ -22,7 +22,7 @@ const Images = () => {
     }, []);
 
     const fetchImages = () => {
-        getAllImages(mediaURL, setImages);
+        getAllData(mediaURL, setImages);
     };
 
     const handleFileChange = (e) => {
@@ -91,33 +91,33 @@ const Images = () => {
             
             </select>
 
-            <select className = "pagination-input" name="cars" id="cars">
+            <select className = "pagination-input">
             <option className = "select-option" value= "" disabled selected>Select category</option>
               
             </select>
 
             </div>
-            <div className="images-container">
-                {currentItems && currentItems.map((image) => (
-                    <div key={image.Id} className="image-wrapper">
-                        <img className="image" src={`${imagesURL}${image.Image ? image.Image.slice(7) : 'default-image.jpg'}`} alt="" />
-                        <h1 className = "category">{image.Category}</h1>
-                        <h1 className="title">{`Title: ${image.Title}`}</h1>
-                        <h1 className="episode">{`Episode: ${image.Id}`}</h1>
-                        <p className="date">{`Date created: ${image.CreateDate}`}</p>
-                        <Link className = "youtube-link" to={`https://www.youtube.com/watch?v=${image.MediaName}`} target = "_blank">Link to YouTube channel</Link>
+            <div className="data-container">
+                {currentItems && currentItems.map((datum) => (
+                    <div key={datum.Id} className="image-wrapper">
+                        <img className="image" src={`${imagesURL}${datum.Image ? datum.Image.slice(7) : 'default-image.jpg'}`} alt="" />
+                        <h1 className = "category">{datum.Category}</h1>
+                        <h1 className="title">{datum.Title}</h1>
+                        <h1 className="episode">{`Episode: ${datum.Id}`}</h1>
+                        <p className="date">{datum.CreateDate}</p>
+                        <Link className = "youtube-link" to={`https://www.youtube.com/watch?v=${datum.MediaName}`} target = "_blank">Link to YouTube channel</Link>
 
                         <div className="audio-wrapper">
-                            <audio id={image.Id} controls>
-                                <source src={image.Audio ? `${audiosURL}${image.Audio.replace('MP3/', '')}` : ""} type="audio/mpeg" />
+                            <audio id={datum.Id} controls>
+                                <source src={datum.Audio ? `${audiosURL}${datum.Audio.replace('MP3/', '')}` : ""} type="audio/mpeg" />
                             </audio>
                           
                         </div>
 
-                        <p className="audio-size">{`Audio Size: ${Math.round(image.AudioSize / 1000000).toFixed(2)} MB`}</p>
+                        <p className="audio-size">{`Audio Size: ${Math.round(datum.AudioSize / 1000000).toFixed(2)} MB`}</p>
 
                         <div className="crud-buttons">
-                            <div className="crud-button" onClick={() => startEditing(image)}>
+                            <div className="crud-button" onClick={() => startEditing(datum)}>
                                 <h1 className="crud-button-text">Edit</h1>
                                 <img className="crud-button-icon" src={editicon} alt="" />
                             </div>
@@ -128,7 +128,7 @@ const Images = () => {
                             </div>
                         </div>
 
-                        {editingImageId === image.Id && (
+                        {editingImageId === datum.Id && (
                             <div className="edit-form">
                                 <input
                                     type="text"
@@ -140,7 +140,7 @@ const Images = () => {
                                     type="file"
                                     onChange={handleFileChange}
                                 />
-                                <button onClick={() => handleUpdate(image.Id)}>Save</button>
+                                <button onClick={() => handleUpdate(datum.Id)}>Save</button>
                                 <button onClick={() => setEditingImageId(null)}>Cancel</button>
                             </div>
                         )}
@@ -157,4 +157,4 @@ const Images = () => {
     );
 };
 
-export default Images;
+export default Home;
