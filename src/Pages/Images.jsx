@@ -105,7 +105,7 @@ const Images = () => {
                         <h1 className="title">{`Title: ${image.Title}`}</h1>
                         <h1 className="episode">{`Episode: ${image.Id}`}</h1>
                         <p className="date">{`Date created: ${image.CreateDate}`}</p>
-                        <Link className = "youtube-link" href="">{`Link to YouTube channel ${image.CreateDate}`}</Link>
+                        <Link className = "youtube-link" to={`https://www.youtube.com/watch?v=${image.MediaName}`} target = "_blank">Link to YouTube channel</Link>
 
                         <div className="audio-wrapper">
                             <audio id={image.Id} controls>
